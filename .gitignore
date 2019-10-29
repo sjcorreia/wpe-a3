@@ -1,0 +1,51 @@
+# root scoped ignores
+/.cache
+/env
+/htmlcov
+/scribbles
+/tests/.cache
+/tests_integration/.cache
+/tests_unit_old/.cache
+/tmp
+/var
+/GIT_VERSION
+
+# pycharm
+/.idea
+
+# vscode
+.vscode/
+
+# folder name ignores
+*/.pytest_cache/
+
+
+# file name ignores
+__pycache__
+.coverage*
+.DS_Store
+.Python
+.ropeproject
+coverage.xml
+junit.xml
+pep8.report
+.python-version
+test_server_log.log
+
+# wildcard ignores
+*.egg-info
+*.pyc
+*.pyo
+*.swp
+*.sublime-project
+*.sublime-workspace
+*.log
+*.sql
+*.coverage.*.local.*
+*.~lock.*
+
+/swagger/definitions/*/*.json
+/scripts/*.zip
+/scripts/*.json
+.pytest_cache/*
+.mypy_cache/*
