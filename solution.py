@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 from collections import Counter
-from typing import List, Dict
+from typing import List, Dict, TypeVar, Type
+
+H = TypeVar('H', bound='House')
+N = TypeVar('N', bound='Neighborhood')
 
 
 class NotEnoughSpaceError(Exception):
@@ -37,6 +40,10 @@ class House:
             house_output += "\n" + str(room)
         return "{}:{}".format(self.__class__.__name__, house_output)
 
+    def __add__(self, other: Room) -> H:
+        self.add_rooms(other)
+        return self
+
     def size(self) -> int:
         return self._house_size
 
@@ -60,6 +67,10 @@ class Neighborhood:
     def __init__(self, name: str = '') -> None:
         self._name = name
         self.houses: List[House] = []
+
+    def __add__(self, other: House) -> N:
+        self.add_houses(other)
+        return self
 
     def size(self) -> int:
         return sum(house.size() for house in self.houses)
