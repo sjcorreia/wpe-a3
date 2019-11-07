@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from collections import Counter
-from typing import List, Dict, Any
+from typing import List, Dict
 
 
 class NotEnoughSpaceError(Exception):
@@ -37,7 +37,7 @@ class House:
             house_output += "\n" + str(room)
         return "{}:{}".format(self.__class__.__name__, house_output)
 
-    def __add__(self, other: Room) -> Any:
+    def __add__(self, other: Room) -> 'House':
         self.add_rooms(other)
         return self
 
@@ -65,7 +65,7 @@ class Neighborhood:
         self._name = name
         self.houses: List[House] = []
 
-    def __add__(self, other: House) -> Any:
+    def __add__(self, other: House) -> 'Neighborhood':
         self.add_houses(other)
         return self
 
