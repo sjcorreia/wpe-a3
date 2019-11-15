@@ -86,6 +86,9 @@ class Neighborhood:
     def calculate_tax(self) -> float:
         return sum(house.calculate_tax() for house in self.houses)
 
+    def find_with_room(self, name: str, size: int) -> set:
+        return set()
+
 
 class Apartment(House):
     """"house type with default space 80"""
