@@ -1,28 +1,30 @@
 #!/usr/bin/env python
-from collections import Counter
-from typing import List, Dict
+import json
+from typing import Any, Dict
 
 
-class NotEnoughSpaceError(Exception):
-    """Raised when the House does not have enough space for
-    additional rooms"""
-    pass
+class ConfigFile( ):
+    """This class will represent a configuration file"""
 
+    def __init__(self, filename: str, sep: str = '=') -> None:
+        self.filename = filename
+        self.sep = sep
+        self.config: Dict[str, str] = {}
 
-class ConfigFile():
-    """This class to model a room, including name and size"""
+    def set(self, key: str, value: Any) -> None:
+        self.config[key] = str(value)
 
-    def __init__(self) -> None:
-        pass
-
-    def set(self) -> None:
-        pass
-
-    def get(self) -> None:
-        pass
+    def get(self, key: str) -> str:
+        return self.config[key]
 
     def dump(self) -> None:
-        pass
+        """write to the file set in filename"""
+        with open(self.filename, 'w') as file:
+            for key, value in self.config.items():
+                file.write(f"{key}{self.sep}{value}\n")
 
     def load(self) -> None:
-        pass
+        """read from filename"""
+        with open(self.filename, 'r') as file:
+            for line in file.readlines():
+                self.config[line.split(f"{self.sep}")[0]] = line.split(f"{self.sep}")[1].strip()
