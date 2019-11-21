@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from collections import Counter
-from typing import List, Dict
+from typing import List, Dict, Set
 
 
 class NotEnoughSpaceError(Exception):
@@ -86,10 +86,11 @@ class Neighborhood:
     def calculate_tax(self) -> float:
         return sum(house.calculate_tax() for house in self.houses)
 
-    def find_with_room(self, **kwargs) -> set:
-        obj = vars(kwargs)
-        print(obj)
-        return set()
+    def find_with_room(self, **kwargs: str) -> Set[House]:
+        return set(one_house
+                   for one_house in self.houses
+                   for one_room in one_house.rooms
+                   if vars(one_room) == kwargs)
 
 
 class Apartment(House):
