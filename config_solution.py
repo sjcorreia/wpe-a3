@@ -1,9 +1,8 @@
 #!/usr/bin/env python
-import json
 from typing import Any, Dict
 
 
-class ConfigFile( ):
+class ConfigFile():
     """This class will represent a configuration file"""
 
     def __init__(self, filename: str, sep: str = '=') -> None:
@@ -27,4 +26,5 @@ class ConfigFile( ):
         """read from filename"""
         with open(self.filename, 'r') as file:
             for line in file.readlines():
-                self.config[line.split(f"{self.sep}")[0]] = line.split(f"{self.sep}")[1].strip()
+                key_value = line.split(f"{self.sep}")
+                self.config[key_value[0]] = key_value[1].strip()
