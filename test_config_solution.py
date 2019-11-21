@@ -1,4 +1,4 @@
-from solution import ConfigFile
+from config_solution import ConfigFile
 
 
 def test_set_get():
