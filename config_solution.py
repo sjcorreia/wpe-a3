@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 from typing import Any, Dict
+import time
 
 
-class ConfigFile():
+class ConfigFile:
     """This class will represent a configuration file"""
 
     def __init__(self, filename: str, sep: str = '=') -> None:
@@ -28,3 +29,17 @@ class ConfigFile():
             for line in file.readlines():
                 key_value = line.split(f"{self.sep}")
                 self.config[key_value[0]] = key_value[1].strip()
+
+
+class ConfigFileWithBackups(ConfigFile):
+    """"""
+
+    def __init__(self, filename: str, sep: str = '=') -> None:
+        super().__init__(filename, sep)
+
+    def dump(self) -> None:
+        """write to the file set in filename"""
+        print(time.time())
+        with open(self.filename, 'w') as file:
+            for key, value in self.config.items():
+                file.write(f"{key}{self.sep}{value}\n")
